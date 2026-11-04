@@ -11,17 +11,17 @@ export const readings = pgTable(
     "readings",
     {
         id: serial("id").primaryKey(),
-        station_id: integer("station_id").notNull(),
+        stationId: integer("stationId").notNull(),
         temperature: doublePrecision("temperature").notNull(), // °C
         humidity: doublePrecision("humidity").notNull(), // %
         pressure: doublePrecision("pressure").notNull(), // hPa
-        recorded_at: timestamp("recorded_at").defaultNow().notNull(),
+        recordedAt: timestamp("recordedAt").defaultNow().notNull(),
     },
     (table) => [
-        index("ix_readings_station_time").on(table.station_id, table.recorded_at),
+        index("ix_readings_station_time").on(table.stationId, table.recordedAt),
         foreignKey({
-            name: "readings_station_id_fkey",
-            columns: [table.station_id],
+            name: "readings_stationId_fkey",
+            columns: [table.stationId],
             foreignColumns: [stations.id],
         }).onDelete("cascade"),
     ],

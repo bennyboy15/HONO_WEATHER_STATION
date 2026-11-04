@@ -22,7 +22,7 @@ export const readingCreate = z.object({
     temperature: z.number(),
     humidity: z.number().min(0).max(100),
     pressure: z.number(),
-    recorded_at: z.coerce.date().optional(), // defaults to now in DB
+    recordedAt: z.coerce.date().optional(), // defaults to now in DB
 });
 
 export const readingQuery = z.object({
