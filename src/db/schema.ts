@@ -15,7 +15,7 @@ export const readings = pgTable(
         temperature: doublePrecision("temperature").notNull(), // °C
         humidity: doublePrecision("humidity").notNull(), // %
         pressure: doublePrecision("pressure").notNull(), // hPa
-        recordedAt: timestamp("recordedAt").defaultNow().notNull(),
+        recordedAt: timestamp("recordedAt", { withTimezone: true }).defaultNow().notNull(),
     },
     (table) => [
         index("ix_readings_station_time").on(table.stationId, table.recordedAt),
